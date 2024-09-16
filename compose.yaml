@@ -1,0 +1,30 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: system
+    ports:
+      - "27017:27017"
+    volumes:
+      # - /Users/helloardanish/Documents/.../db-data:/data/db # to map with hard drive never lost
+      - mongodb_data:/data/db # used with docker, lost when docker volumes are deleted but not when service goes down (docker compose down)
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: system
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    depends_on:
+      - mongodb
+
+
+volumes:
+  mongodb_data:
