@@ -34,6 +34,8 @@ spring:
 
 Only database is required in spring mongodb configuration details. Here database is `test-data`
 
+## `mongodb://<username>:<password>@<host>:<port>/<database>?<options>`
+
 ![image](https://github.com/user-attachments/assets/29da6d53-5c9a-4b37-a152-044fbab114c0)
 
 
